@@ -25,7 +25,7 @@ var postordPath = '';
 
 
 function setup() {
-  createCanvas(700, 700);
+  createCanvas(900, 700);
 
   // Nuevo árbol
   tree = new Tree();
