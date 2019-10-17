@@ -50,13 +50,13 @@ Node.prototype.visit = function(parent) {
   // Dibuja un círculo
   stroke(255);
   fill(0);
-  ellipse(this.x, this.y, 30, 30);
+  ellipse(this.x, this.y, 35, 35);
   noStroke();
   // Muestra el valor
   fill(255);
   textAlign(CENTER);
-  textSize(12);
-  text(this.value, this.x, this.y + 4);
+  textSize(18);
+  text(this.value, this.x, this.y + 6);
 
   // Ir hacia la derecha
   if (this.right != null) {
