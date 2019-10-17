@@ -137,3 +137,7 @@ canvas {
 	left: 45%;
 	transform: translateY(-50%);
 }
+
+@media (min-width: 768px){
+	canvas { max-width: 53vw !important; }
+}
