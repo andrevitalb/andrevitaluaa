@@ -14,6 +14,15 @@
 // Árbol binario
 var tree;
 
+var randVal;
+var randList = [];
+var notAdded;
+
+var treePath = [];
+var preordPath = '';
+var inordPath = '';
+var postordPath = '';
+
 
 function setup() {
   createCanvas(700, 700);
@@ -23,7 +32,19 @@ function setup() {
 
   // Agregar 10 valores aleatorios
   for (var i = 0; i < 10; i++) {
-    tree.addValue(floor(random(0, 100)));
+    notAdded = true;
+    randVal = floor(random(0, 100));
+
+    for(let j = 0; j <= i && notAdded; j++){
+      if(randList[j] == randVal) {
+        notAdded = false;
+        randVal = floor(random(0, 100));
+      }
+    }
+
+    randList.push(randVal);
+
+    tree.addValue(randVal);
   }
 
   background(51);
@@ -31,11 +52,26 @@ function setup() {
   // Recorrer el árbol
   tree.traverse();
 
-  // Buscar el número 10 en el árbol
-  var result = tree.search(10);
-  if (result == null) {
-    console.log('No se encontró');
-  } else {
-    console.log(result);
+  treePath = tree.root.preorder(tree.root);
+  treePath = tree.root.inorder(tree.root);
+  treePath = tree.root.postorder(tree.root);
+
+  for(let i = 0; i < 10; i++){
+    preordPath += treePath[i];
+    if(i < 9) preordPath += " > ";
   }
+
+  for(let i = 10; i < 20; i++){
+    inordPath += treePath[i];
+    if(i < 19) inordPath += " > ";
+  }
+
+  for(let i = 20; i < 30; i++){
+    postordPath += treePath[i];
+    if(i < 29) postordPath += " > ";
+  }
+
+  document.getElementById("preordPath").innerHTML = preordPath;
+  document.getElementById("inordPath").innerHTML = inordPath;
+  document.getElementById("postordPath").innerHTML = postordPath;
 }

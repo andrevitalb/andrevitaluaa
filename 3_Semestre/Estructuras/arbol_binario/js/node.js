@@ -11,6 +11,8 @@
     preorden, inorder y postorden
 */
 
+var traversal = [];
+
 // Nodos
 function Node(val, x, y) {
   this.value = val;
@@ -41,8 +43,6 @@ Node.prototype.visit = function(parent) {
   if (this.left != null) {
     this.left.visit(this);
   }
-  // Imprimir el valor
-  console.log(this.value);
 
   // Dibuja una línea desde el nodo padre
   stroke(100);
@@ -63,6 +63,53 @@ Node.prototype.visit = function(parent) {
     this.right.visit(this);
   }
 }
+
+Node.prototype.preorder = function(nde) {
+  // Agregamos el valor actual
+  traversal.push(nde.value);
+
+  // Ir recursivamente a la izquierda
+  if (nde.left != null) {
+    nde.left.preorder(nde.left);
+  } 
+  if (nde.right != null) {
+    nde.right.preorder(nde.right);
+  }
+
+  return traversal;
+}
+
+Node.prototype.inorder = function(nde) {
+  // Ir recursivamente a la izquierda
+  if (nde.left != null) {
+    nde.left.inorder(nde.left);
+  } 
+
+  // Agregamos el valor actual
+  traversal.push(nde.value);
+
+  if (nde.right != null) {
+    nde.right.inorder(nde.right);
+  }
+
+  return traversal;
+}
+
+Node.prototype.postorder = function(nde) {
+  // Ir recursivamente a la izquierda
+  if (nde.left != null) {
+    nde.left.postorder(nde.left);
+  } 
+  if (nde.right != null) {
+    nde.right.postorder(nde.right);
+  }
+
+  // Agregamos el valor actual
+  traversal.push(nde.value);
+
+  return traversal;
+}
+
 
 // Agregar un nuevo nodo
 Node.prototype.addNode = function(n) {

@@ -10,14 +10,67 @@
 		<script language="javascript" type="text/javascript" src="js/node.js"></script>
 		<script language="javascript" type="text/javascript" src="js/tree.js"></script>
 		<script language="javascript" type="text/javascript" src="js/sketch.js"></script>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/styles.css">
+
+		<link rel="icon" href="img/favicon.ico">
 	</head>
 	<body>
-		<div id="traverseHolder">
-			<h1>Selección de recorrido</h1>
-			<button id = "preorden">Preorden</button>
-			<button id = "inorden">Inorden</button>
-			<button id = "postorden">Postorden</button>
+		<div id = "main_content_holder" class="col-12 col-md-5">
+			<div id="traverseHolder" class = "row justify-content-center">
+				<h1 class = "col-12">Selección de recorrido</h1>
+				<div class = "col-12 col-md-4">
+					<button id = "preorden">Preorden</button>
+				</div>
+
+				<div class = "col-12 col-md-4">
+					<button id = "inorden">Inorden</button>
+				</div>
+
+				<div class = "col-12 col-md-4">
+					<button id = "postorden">Postorden</button>
+				</div>
+			</div>
+
+			<div id="pathsHolder">
+				<p id="preText">Recorrido Pre-Orden:</p>
+				<p id="preordPath"></p>
+				<p id="inText">Recorrido In-Orden:</p>
+				<p id="inordPath"></p>
+				<p id="postText">Recorrido Post-Orden:</p>
+				<p id="postordPath"></p>
+			</div>
 		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>
+			$('#preorden').click(function(){
+				$('#preText').css('display','block');
+				$('#preordPath').css('display','block');
+				$('#inText').css('display','none');
+				$('#inordPath').css('display','none');
+				$('#postText').css('display','none');
+				$('#postordPath').css('display','none');
+			});
+
+			$('#inorden').click(function(){
+				$('#preText').css('display','none');
+				$('#preordPath').css('display','none');
+				$('#inText').css('display','block');
+				$('#inordPath').css('display','block');
+				$('#postText').css('display','none');
+				$('#postordPath').css('display','none');
+			});
+
+			$('#postorden').click(function(){
+				$('#preText').css('display','none');
+				$('#preordPath').css('display','none');
+				$('#inText').css('display','none');
+				$('#inordPath').css('display','none');
+				$('#postText').css('display','block');
+				$('#postordPath').css('display','block');
+			});
+		</script>
 	</body>
 </html>

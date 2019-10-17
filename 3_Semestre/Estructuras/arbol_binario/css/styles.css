@@ -10,18 +10,18 @@ body {
 	text-align: center; 
 	background-image: url(../img/bg.jpeg);
 	background-size: cover;
-	background-repeat: none;
 	background-attachment: fixed;
 	background-position: center;
 }
 
-#traverseHolder { 
-	padding: 3rem; 
-	float: left;
+#main_content_holder {
 	position: absolute;
-	top: 28%;
-	left: 5%;
-	transform: translateY(-30%);
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+#traverseHolder { 
+	padding: 3rem;
 }
 
 #traverseHolder h1 {
@@ -32,8 +32,8 @@ body {
 }
 
 #traverseHolder button { 
-	padding: 1rem 2.8rem;
-	margin: 0 15px;
+	padding: 1rem 0;
+	width: 95%;
 	font-size: 25px;
 	border-radius: 15px;
 	font-weight: 600;
@@ -48,6 +48,18 @@ body {
 #traverseHolder button:hover { 
 	transform: translateY(-15px); 
 	background-color: #383838;
+}
+
+#pathsHolder {
+	padding: 3rem;
+}
+
+#pathsHolder p {
+	display: none;
+	color: #fff;
+	font-size: 35px;
+	font-weight: 600;
+
 }
 
 canvas {
