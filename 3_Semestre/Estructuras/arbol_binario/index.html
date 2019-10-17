@@ -17,6 +17,24 @@
 		<link rel="icon" href="img/favicon.ico">
 	</head>
 	<body>
+		<div id = "input_holder" class="col-12 col-md-5">
+			<div class="row">
+				<label for = "numInput" class = "col-12">Ingresa 10 números: </label>
+				<div class="col-6">
+					<input type="number" id="numInput" name="numInput" min = "0" max = "99" required>
+				</div>
+				<div class="col-6">
+					<button id="addNumber" name="addNumber">Siguiente</button>
+				</div>
+				<div id="numbCont" class = "col-12">
+					<h3>Tus números: </h3>
+					<p id="nums"></p>
+				</div>
+				<div class="col-6 offset-3">
+					<button id="getTree" name="getTree">Ingresar</button>
+				</div>
+			</div>
+		</div>
 		<div id = "main_content_holder" class="col-12 col-md-5">
 			<div id="traverseHolder" class = "row justify-content-center">
 				<h1 class = "col-12">Selección de recorrido</h1>
@@ -45,6 +63,71 @@
 
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 		<script>
+			var counter = 0;
+			var numList = [];
+			var added = false;
+			var num;
+
+			function numChecker(){
+				num = parseInt($('#numInput').val());
+
+				if(num / 100 > 1){
+					alert("Error, número mayor que 100");
+					added = true;
+				}
+				else added = false;
+
+				for(let i = 0; i < counter & !added; i++){
+					if(numList[i] == num){
+						added = true;
+						alert("Error, número ya utilizado");
+					}
+				}
+			}
+
+			$('#numInput').keypress(function(e) {
+			    var key = e.which;
+			    if (key == 13){
+			    	$('#addNumber').click();
+			    	return false;
+			    }
+			});
+
+			$('#addNumber').click(function(){
+				if(counter == 0){
+					numChecker();
+
+					if(!added){
+						numList[counter++] = num;
+						$('#nums').append(numList[counter - 1]);
+					}
+				}
+				else if (counter < 10){
+					numChecker();
+
+					if(!added){
+						numList[counter++] = num;
+						$('#nums').append(", " + numList[counter - 1]);
+					}
+				}
+					
+				/*$('#numInput').removeAttr('value');*/
+				$('#numInput').val('');
+
+
+				if(counter == 10) {
+					$('#numInput').css('display', 'none');
+					$('#addNumber').css('display', 'none');
+					$('#getTree').css('display', 'inline-block');
+				}
+			});
+
+			$('#getTree').click(function(){
+				$('#input_holder').css('display', 'none');
+				$('#main_content_holder').css('display', 'block');
+				getTree(numList);
+			});
+
 			$('#preorden').click(function(){
 				$('#preText').css('display','block');
 				$('#preordPath').css('display','block');

@@ -25,14 +25,18 @@ var postordPath = '';
 
 
 function setup() {
-  createCanvas(900, 700);
+  createCanvas(1000, 700);
+  background(51);
+}
 
+function getTree(nums){
   // Nuevo árbol
   tree = new Tree();
 
   // Agregar 10 valores aleatorios
   for (var i = 0; i < 10; i++) {
-    notAdded = true;
+    // Random number adder
+    /*notAdded = true;
     randVal = floor(random(0, 100));
 
     for(let j = 0; j <= i && notAdded; j++){
@@ -44,10 +48,11 @@ function setup() {
 
     randList.push(randVal);
 
-    tree.addValue(randVal);
-  }
+    tree.addValue(randVal);*/
 
-  background(51);
+    // User number adder
+    tree.addValue(nums[i]);
+  }
 
   // Recorrer el árbol
   tree.traverse();
