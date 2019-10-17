@@ -3,6 +3,12 @@
     Universidad Autónoma de Aguascalientes
     Ing. en Computación Inteligente
     3° Semestre
+
+    Dr. en C. Luis Fernando Gutiérrez Marfileño
+    Estructuras Computacionales Avanzadas
+
+    Programa que crea un árbol binario y realiza los recorridos
+    preorden, inorder y postorden
 */
 
 // Árbol binario
@@ -20,7 +26,7 @@ function setup() {
     tree.addValue(floor(random(0, 100)));
   }
 
-  background(0);
+  background(51);
 
   // Recorrer el árbol
   tree.traverse();

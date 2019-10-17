@@ -3,33 +3,38 @@
     Universidad Autónoma de Aguascalientes
     Ing. en Computación Inteligente
     3° Semestre
+
+    Dr. en C. Luis Fernando Gutiérrez Marfileño
+    Estructuras Computacionales Avanzadas
+
+    Programa que crea un árbol binario y realiza los recorridos
+    preorden, inorder y postorden
 */
 
-// Tree object
+// Objeto de árbol
 function Tree() {
-  // Just store the root
+  // Incialización con la raíz
   this.root = null;
 }
 
-// Start by visiting the root
+// Iniciar el recorrido por la raíz
 Tree.prototype.traverse = function() {
   this.root.visit(this.root);
 }
 
-// Start by searching the root
 Tree.prototype.search = function(val) {
   var found = this.root.search(val);
   return found;
 }
 
-// Add a new value to the tree
+// Agregar un nuevo valor al árbol
 Tree.prototype.addValue = function(val) {
   var n = new Node(val);
   if (this.root == null) {
     this.root = n;
-    // An initial position for the root node
+    // Una posición inicial para el nodo raíz
     this.root.x = width / 2;
-    this.root.y = 16;
+    this.root.y = 50;
   } else {
     this.root.addNode(n);
   }

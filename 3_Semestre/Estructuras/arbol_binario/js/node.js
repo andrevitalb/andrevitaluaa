@@ -3,6 +3,12 @@
     Universidad Autónoma de Aguascalientes
     Ing. en Computación Inteligente
     3° Semestre
+
+    Dr. en C. Luis Fernando Gutiérrez Marfileño
+    Estructuras Computacionales Avanzadas
+
+    Programa que crea un árbol binario y realiza los recorridos
+    preorden, inorder y postorden
 */
 
 // Nodos

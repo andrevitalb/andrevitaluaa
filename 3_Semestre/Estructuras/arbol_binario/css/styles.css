@@ -6,6 +6,57 @@
 	font-family: Source Sans Pro, sans-serif;
 }
 
-#inputsHolder { 
+body { 
+	text-align: center; 
+	background-image: url(../img/bg.jpeg);
+	background-size: cover;
+	background-repeat: none;
+	background-attachment: fixed;
+	background-position: center;
+}
+
+#traverseHolder { 
 	padding: 3rem; 
+	float: left;
+	position: absolute;
+	top: 28%;
+	left: 5%;
+	transform: translateY(-30%);
+}
+
+#traverseHolder h1 {
+	color: #fff;
+	text-shadow: 2px 3px 4px #696969;
+	margin-bottom: 25px;
+	font-size: 3.5rem;
+}
+
+#traverseHolder button { 
+	padding: 1rem 2.8rem;
+	margin: 0 15px;
+	font-size: 25px;
+	border-radius: 15px;
+	font-weight: 600;
+	border: none;
+	background-color: #212121;
+	color: #fff;
+	border: 2px solid #fff;
+	transition: all .3s ease-in-out;
+	cursor: hand;
+}
+
+#traverseHolder button:hover { 
+	transform: translateY(-15px); 
+	background-color: #383838;
+}
+
+canvas {
+	display: inline-block; 
+	padding: 1.5rem;
+	border: 2px solid #fff;
+	border-radius: 20px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%);
 }
