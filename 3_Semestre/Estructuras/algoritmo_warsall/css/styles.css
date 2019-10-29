@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
+
+::selection {
+	background-color: #212121;
+	color: #fff;
+}
+
+body {
+	background-image: url(../img/bg.jpg);
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+	padding-top: 3rem;
+}
+
+.mainHeader { color: #fff; }
+
+.tableConts {
+	text-align: center;
+	padding: 1.5rem;
+	height: 90vh;
+}
+
+.tableConts:last-child { padding: 4rem 5rem 5rem; }
+
+#graphCont {
+	width: 70%;
+	padding: 1.5rem;
+	background-color: rgba(255,255,255,.2);
+	border-radius: 15px;
+	border: 1.5px solid #ccc;
+	display: inline-block;
+	margin-bottom: 1.5rem;
+}
+
+#graph { width: 80%; }
+
+.tableHeaders { color: #fff; }
+
+table {
+	background-color: rgba(0,0,0,.5);
+	border-radius: 15px;
+	border: 1.5px solid #ccc;
+	border-collapse: unset;
+	width: 80%;
+}
+
+table, table * { 
+	color: #fff; 
+	font-family: Source Sans Pro, sans-serif;
+	text-align: center;
+}
+
+#adyMat th, #adyMat td { padding: .75rem 1.5rem; }
+#solMat th, #solMat td { padding: 1.5rem 1.35rem; }
+
+#buttonCont {
+	margin-top: 2.5rem;
+	width: 100%;
+	transition: all .3s ease-in-out;
+}
+
+#buttonCont:hover { transform: translateY(-10px); }
+
+#dwnldRepo {
+	padding: 1rem 3rem;
+	color: #fff;
+	background-color: #111;
+	border-radius: 10px;
+	border: 2px solid #fff;
+	font-size: 20px;
+	font-weight: 600;
+	transition: all .3s ease-in-out;
+	text-decoration: none;
+}
+
+#dwnldRepo:hover { background-color: #333; }
