@@ -12,6 +12,132 @@
 		<link rel="icon" href="img/favicon.ico">
 	</head>
 	<body>
-		
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="mainHeader">Warshall's Algorithm</h1>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<div id="graphCont"><img src="img/graph.svg" alt="Grafo Conexo" id = "graph"></div>
+
+					<h4 class="tableHeaders">Matriz de Adyacencia</h4>
+					<table id = "adyMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<h3 class="tableHeaders">Matriz Solución</h3>
+					<table id = "solMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<div id = "buttonCont"><a id = "dwnldRepo" href="reporte.pdf">Descargar reporte</a></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src = "js/main.js"></script>
+		<script>
+			/*
+			    Santiago André Vital Betanzos
+			    Universidad Autónoma de Aguascalientes
+			    Ing. en Computación Inteligente
+			    3° Semestre
+
+			    Dr. en C. Luis Fernando Gutiérrez Marfileño
+			    Estructuras Computacionales Avanzadas
+
+			    Programa que calcule las componentes conexas de un grafo dado
+			    mediante el algoritmo de Warshall.
+			*/
+
+			const size = 6, INF = 999999;
+
+			var ady = new Array(size);
+
+			function initializeAdy(){
+				for(let i = 0; i < size; i++) ady[i] = new Array(size);
+
+				for(let i = 0; i < size; i++){
+					for(let j = 0; j < size; j++){
+						ady[i][j] = INF;
+					}
+				}
+
+				for(let i = 0; i < size; i++) ady[i][i] = 0;
+
+				ady[0][1] = 1;
+			    ady[1][2] = 1;
+			    ady[2][0] = 1;
+			    ady[2][5] = 1;
+			    ady[3][1] = 1;
+			    ady[3][4] = 1;
+			    ady[4][2] = 1;
+			    ady[5][1] = 1;
+			}
+
+			function printMatrix(mat){
+				var letters = ['A','B','C','D','E','F'];
+				var target;
+
+				if(mat) target = '#adyMat';
+				else target = '#solMat';
+
+				for(let i = 0; i < size; i++){
+					var row = '<tr><td>' + letters[i] + '</td>';
+					for(let j = 0; j < size; j++){
+						if(ady[i][j] == 0) row += '<td>0</td>';
+						else if(ady[i][j] != INF) row += '<td>1</td>';
+						else row += '<td>INF</td>';
+					}
+					row += '</tr>';
+					$(target + ' tbody').append(row);
+				}
+			}
+
+			function warshall(){
+				for(let i = 0; i < size; i++){
+					for(let j = 0; j < size; j++){
+						for(let k = 0; k < size; k++){
+							if(ady[i][j] == 1 || (ady[i][k] == 1 && ady[k][j] == 1)) ady[i][j] = 1;
+						}
+					}
+				}
+
+				for(let i = 0; i < size; i++) ady[i][i] = 0;
+
+				printMatrix(false);
+			}
+
+			$(document).ready(function(){
+				initializeAdy();
+				printMatrix(true);
+				warshall();
+			});
+		</script>
 	</body>
 </html>
