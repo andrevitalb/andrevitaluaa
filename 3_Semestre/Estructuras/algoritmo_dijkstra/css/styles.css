@@ -35,6 +35,10 @@ body {
 #graph { width: 80%; }
 
 .tableHeaders { color: #fff; }
+#solTitle {
+	color: #fff;
+	margin-top: 2rem;
+}
 
 table {
 	background-color: rgba(0,0,0,.5);
@@ -60,7 +64,7 @@ table, table * {
 	border: 1.5px solid #ccc;
 	border-collapse: unset;
 	width: 100%;
-	margin: 2rem auto 0;
+	margin: 0 auto;
 	color: #fff;
 }
 
