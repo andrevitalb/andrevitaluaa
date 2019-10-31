@@ -68,6 +68,8 @@ table, table * {
 	color: #fff;
 }
 
+#pathHolder h4 { margin: 1rem 0; }
+
 #buttonCont {
 	margin-top: 2.5rem;
 	width: 100%;
