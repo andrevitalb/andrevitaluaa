@@ -1,0 +1,235 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>Dijkstra's Algorithm</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+
+		<link rel="icon" href="img/favicon.ico">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="mainHeader">Dijkstra's Algorithm</h1>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<div id="graphCont"><img src="img/graph.svg" alt="Grafo Conexo" id = "graph"></div>
+
+					<h3 class="tableHeaders">Todos los caminos más cortos</h3>
+					<table id = "solMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+								<th>G</th>
+								<th>H</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+					<div id="pathHolder">
+						<h3>Camino más corto desde A hacia H</h3>
+						<h4></h4>
+					</div>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<h4 class="tableHeaders">Matriz de Pesos</h4>
+					<table id = "weighMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+								<th>G</th>
+								<th>H</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+					<div id = "buttonCont"><a id = "dwnldRepo" href="reporte.pdf" download>Descargar reporte</a></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>
+			/*
+			    Santiago André Vital Betanzos
+			    Universidad Autónoma de Aguascalientes
+			    Ing. en Computación Inteligente
+			    3° Semestre
+
+			    Dr. en C. Luis Fernando Gutiérrez Marfileño
+			    Estructuras Computacionales Avanzadas
+
+			    Programa que calcule la distancia más corta entre el vértice A 
+    			y mediante el algoritmo de Dijkstra de un grafo dado.
+			*/
+
+			const size = 8, INF = 999999;
+
+			var mat = new Array(size);
+			var prev = new Array(size);
+			var visited = new Array();
+			var queue = new Array();
+
+			var letters = ['A','B','C','D','E','F','G','H'];
+			var end;
+
+			function initializeAdy(){
+				for(let i = 0; i < size; i++) {
+					mat[i] = new Array(size);
+					queue[i] = new Array(1);
+				}
+
+				for(let i = 0; i < size; i++){
+					for(let j = 0; j < size; j++) mat[i][j] = INF;
+				}
+
+				for(let i = 0; i < size; i++) {
+					mat[i][i] = 0;
+					prev[i] = undefined;
+					queue[i][0] = i;
+					queue[i][1] = INF;
+				}
+
+				mat[0][1] = 3;
+				mat[0][2] = 1;
+			    mat[1][0] = 3;
+			    mat[1][3] = 1;
+			    mat[1][6] = 5;
+				mat[2][0] = 1;
+			    mat[2][3] = 2;
+			    mat[2][5] = 5;
+			    mat[3][1] = 1;
+			    mat[3][2] = 2;
+			    mat[3][4] = 4;
+			    mat[3][5] = 2;
+			    mat[4][3] = 4;
+			    mat[4][6] = 2;
+			    mat[4][7] = 1;
+			    mat[5][2] = 5;
+			    mat[5][3] = 2;
+			    mat[5][7] = 3;
+			    mat[6][1] = 5;
+			    mat[6][4] = 2;
+			    mat[7][4] = 1;
+			    mat[7][5] = 3;
+
+				queue[0][1] = 0;
+				prev[0] = null;
+			}
+
+			function printMatrix(opt){
+				var target;
+
+				if(opt){
+					target = '#weighMat tbody';
+
+					for(let i = 0; i < size; i++){
+						var row = '<tr><td>' + letters[i] + '</td>';
+						for(let j = 0; j < size; j++){
+							if(mat[i][j] == 0) row += '<td>0</td>';
+							else if(mat[i][j] != INF) row += '<td>'+mat[i][j]+'</td>';
+							else row += '<td></td>';
+						}
+						row += '</tr>';
+						$(target).append(row);
+					}
+				}
+				else {
+					target = '#solMat tbody';
+
+					var row = '<tr><td>A</td>';
+
+					for(let i = 0; i < size; i++){
+						if(queue[i][1] == 0) row += '<td>0</td>';
+						else if(queue[i][1] != INF) row += '<td>'+queue[i][1]+'</td>';
+						else row += '<td></td>';
+					}
+
+					row += '</tr>';
+					$(target).append(row);
+				}
+			}
+
+			function pathFinder(){
+				let i = 7;
+				var path = new Array();
+
+				path.push('H');
+
+				while(prev[i] != null){
+					path.push(prev[i]);
+					i = letters.indexOf(prev[i]);
+				}
+
+				var pathString = '';
+
+				for(let i = path.length - 1; i >= 0; i--) {
+					pathString += path[i];
+					if(i > 0) pathString += ' > ';
+				}
+
+				$('#pathHolder h4').html(pathString);
+			}
+
+			function dijkstra(){
+				var nodes = 0;
+
+				while(nodes++ < size){
+					let min = INF;
+					let minInd = 0;
+
+					for(let j = 0; j < size; j++){
+						if(queue[j][0] != undefined){
+							if(queue[j][1] < min) {
+								min = queue[j][1];
+								minInd = j;
+							}
+						}
+					}
+
+					u = queue[minInd][0];
+
+					for(let i = 0; i < size; i++){
+						if(queue[i][0] != undefined && mat[u][i] != INF && mat[u][i] != 0){
+							alt = queue[u][1] + mat[u][i];
+							if(alt < queue[i][1]){
+								queue[i][1] = alt;
+								prev[i] = letters[u];
+							}
+						}
+					}
+
+					queue[minInd][0] = undefined;
+				}
+
+				printMatrix(false);
+				pathFinder();
+			}
+
+			$(document).ready(function(){
+				initializeAdy();
+				printMatrix(true);
+				dijkstra();
+			});
+		</script>
+	</body>
+</html>
