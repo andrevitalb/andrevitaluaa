@@ -16,7 +16,7 @@
 					<h1 class="mainHeader">Kruskal's Algorithm</h1>
 				</div>
 				<div class="col-12 col-md-6 tableConts">
-					<div id="graphCont"><img src="img/graph.svg" alt="Grafo Conexo" id = "graph"></div>
+					<div class="graphCont"><img src="img/graph.svg" alt="Grafo Conexo" class = "graph"></div>
 					
 					<h4 class="tableHeaders">Matriz de Pesos</h4>
 					<table id = "weighMat">
@@ -39,7 +39,8 @@
 					</table>
 				</div>
 				<div class="col-12 col-md-6 tableConts">
-					<h3 class="tableHeaders">Árbol de Expansión Mínima (MST)</h3>
+					<div class="graphCont"><img src="img/mst.svg" alt="Árbol de Expansión Mínima" class = "graph"></div>
+					<h4 class="tableHeaders">Árbol de Expansión Mínima (MST)</h4>
 					<table id = "solMat">
 						<thead>
 							<tr>
@@ -58,13 +59,19 @@
 						<tbody>
 						</tbody>
 					</table>
-
-					<h3 id = "solTitle">Peso del MST</h3>
-					<div id="weightHolder">
-						<h4></h4>
+				</div>
+				<div class="col-12" id = "solRow">
+					<div class="row">					
+						<div class="col">
+							<h4 id = "solTitle">Peso del MST</h4>
+							<div id="weightHolder">
+								<h4></h4>
+							</div>
+						</div>
+						<div class="col">
+							<div id = "buttonCont"><a id = "dwnldRepo" href="reporte.pdf" download>Descargar reporte</a></div>
+						</div>
 					</div>
-
-					<div id = "buttonCont"><a id = "dwnldRepo" href="reporte.pdf" download>Descargar reporte</a></div>
 				</div>
 			</div>
 		</div>

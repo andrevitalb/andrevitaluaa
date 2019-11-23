@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
-::selection {
-	background-color: #212121;
-	color: #fff;
-}
+* { color: #fff !important; }
+
+::selection { background-color: #212121; }
 
 body {
 	background-image: url(../img/bg.jpg);
@@ -14,16 +13,14 @@ body {
 	padding-top: 3rem;
 }
 
-.mainHeader { color: #fff; }
-
 .tableConts {
 	text-align: center;
 	padding: 1.5rem;
 	margin: auto 0;
 }
 
-#graphCont {
-	width: 90%;
+.graphCont {
+	width: 80%;
 	padding: 1.5rem;
 	background-color: rgba(255,255,255,.2);
 	border-radius: 15px;
@@ -32,13 +29,7 @@ body {
 	margin-bottom: 1.5rem;
 }
 
-#graph { width: 90%; }
-
-.tableHeaders { color: #fff; }
-#solTitle {
-	color: #fff;
-	margin-top: 2rem;
-}
+.graph { width: 90%; }
 
 table {
 	background-color: rgba(0,0,0,.5);
@@ -50,28 +41,29 @@ table {
 }
 
 table, table * { 
-	color: #fff; 
 	font-family: Source Sans Pro, sans-serif;
 	text-align: center;
 }
 
-#weighMat th, #weighMat td { padding: .55rem 1.2rem; }
-#solMat th, #solMat td { padding: .4rem 1.2rem; }
+#weighMat th, #weighMat td, #solMat th, #solMat td { padding: .4rem 1.2rem; }
+
+#solRow { padding: 1rem 0 2rem; }
+#solRow .col { margin: auto; }
+#solTitle { display: inline-block; }
 
 #weightHolder {
 	background-color: rgba(0,0,0,.5);
 	border-radius: 15px;
 	border: 1.5px solid #ccc;
 	border-collapse: unset;
+	display: inline-block;
 	width: 15%;
-	margin: 0 auto;
-	color: #fff;
+	margin-left: 1.2rem;
 }
 
 #weightHolder h4 { margin: 1rem 0; }
 
 #buttonCont {
-	margin-top: 2.5rem;
 	width: 100%;
 	transition: all .3s ease-in-out;
 }
@@ -80,7 +72,6 @@ table, table * {
 
 #dwnldRepo {
 	padding: 1rem 3rem;
-	color: #fff;
 	background-color: #111;
 	border-radius: 10px;
 	border: 2px solid #fff;
