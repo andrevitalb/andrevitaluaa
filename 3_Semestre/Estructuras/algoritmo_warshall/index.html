@@ -111,7 +111,7 @@
 					for(let j = 0; j < size; j++){
 						if(ady[i][j] == 0) row += '<td>0</td>';
 						else if(ady[i][j] != INF) row += '<td>1</td>';
-						else row += '<td>INF</td>';
+						else row += '<td></td>';
 					}
 					row += '</tr>';
 					$(target + ' tbody').append(row);
