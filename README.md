@@ -18,5 +18,5 @@
       
 
 <p align="center">
-    [<img src="https://www.andrevital.com/images/logo_contained_negative.svg" width="40px">](https://andrevital.com)
+    <a href = "https://andrevital.com"><img src="https://www.andrevital.com/images/logo_contained_negative.svg" width="40px"></a>
 </p>
