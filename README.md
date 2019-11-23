@@ -15,7 +15,8 @@
     
 - **[Algoritmo de Kruskal](https://andrevitalb.github.io/uaa_repo/3_Semestre/Estructuras/algoritmo_kruskal/)**  
     Programa que genere un árbol de expansión mínima de un grafo dado por medio del algoritmo de Kruskal.  
-    
+      
+
 <p align="center">
-    <img src="https://www.andrevital.com/images/logo_contained_negative.svg" width="50px">
+    <img src="https://www.andrevital.com/images/logo_contained_negative.svg" width="40px">
 </p>
