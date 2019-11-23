@@ -1,0 +1,250 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>Kruskal's Algorithm</title>
+
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/styles.css">
+
+		<link rel="icon" href="img/favicon.ico">
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="mainHeader">Kruskal's Algorithm</h1>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<div id="graphCont"><img src="img/graph.svg" alt="Grafo Conexo" id = "graph"></div>
+					
+					<h4 class="tableHeaders">Matriz de Pesos</h4>
+					<table id = "weighMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+								<th>G</th>
+								<th>H</th>
+								<th>I</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-12 col-md-6 tableConts">
+					<h3 class="tableHeaders">Árbol de Expansión Mínima (MST)</h3>
+					<table id = "solMat">
+						<thead>
+							<tr>
+								<th></th>
+								<th>A</th>
+								<th>B</th>
+								<th>C</th>
+								<th>D</th>
+								<th>E</th>
+								<th>F</th>
+								<th>G</th>
+								<th>H</th>
+								<th>I</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+
+					<h3 id = "solTitle">Peso del MST</h3>
+					<div id="weightHolder">
+						<h4></h4>
+					</div>
+
+					<div id = "buttonCont"><a id = "dwnldRepo" href="reporte.pdf" download>Descargar reporte</a></div>
+				</div>
+			</div>
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script>
+			/*
+			    Santiago André Vital Betanzos
+			    Universidad Autónoma de Aguascalientes
+			    Ing. en Computación Inteligente
+			    3° Semestre
+
+			    Dr. en C. Luis Fernando Gutiérrez Marfileño
+			    Estructuras Computacionales Avanzadas
+
+			    Programa que genere un árbol de expansión mínima
+			    de un grafo dado por medio del algoritmo de Kruskal.
+			*/
+
+			const size = 9, nEdges = 14, INF = 999999;
+
+			var mat = new Array(size);
+			var edges = new Array(nEdges);
+			var mst = new Array(size);
+			var visited = new Array(size);
+			var prev = new Array(size);
+
+			var letters = ['A','B','C','D','E','F','G','H','I'];
+			var end;
+
+			var addedEdges = 0;
+			var mstWeight = 0;
+
+			function addEdge(ind, s, e, w){
+				edges[ind][0] = s;
+				edges[ind][1] = e;
+				edges[ind][2] = w;
+			}
+
+			function switchEdges(a, b){
+				[edges[a][0], edges[b][0]] = [edges[b][0], edges[a][0]];
+				[edges[a][1], edges[b][1]] = [edges[b][1], edges[a][1]];
+				[edges[a][2], edges[b][2]] = [edges[b][2], edges[a][2]];
+			}
+
+			function initializeAdy(){
+				for(let i = 0; i < size; i++) {
+					mat[i] = new Array(size);
+					mst[i] = new Array(size);
+					prev[i] = i;
+				}
+
+				for(let i = 0; i < nEdges; i++) edges[i] = new Array(3);
+
+				for(let i = 0; i < size; i++){
+					for(let j = 0; j < size; j++) {
+						mat[i][j] = INF;
+						mst[i][j] = INF;
+					}
+				}
+
+				for(let i = 0; i < size; i++) {
+					mat[i][i] = 0;
+					mst[i][i] = 0;
+				}
+
+				mat[0][1] = 6;
+				mat[0][3] = 10;
+				mat[0][6] = 8;
+				mat[1][2] = 11;
+				mat[1][4] = 15;
+				mat[1][7] = 13;
+				mat[2][7] = 4;
+				mat[3][4] = 6;
+				mat[4][5] = 2;
+				mat[5][6] = 4;
+				mat[5][8] = 6;
+				mat[6][7] = 5;
+				mat[6][8] = 5;
+				mat[7][8] = 7;
+
+				for(let i = 0; i < size; i++){
+					for(let j = 0; j < size; j++){
+						if(mat[i][j] > 0 && mat[i][j] < INF) addEdge(addedEdges++, i, j, mat[i][j]);
+					}
+				}
+			}
+
+			function printMatrix(){
+				var target;
+
+				target = '#weighMat tbody';
+
+				for(let i = 0; i < size; i++){
+					var row = '<tr><td>' + letters[i] + '</td>';
+					for(let j = 0; j < size; j++){
+						if(mat[i][j] == 0) row += '<td>0</td>';
+						else if(mat[i][j] != INF) row += '<td>'+ mat[i][j] +'</td>';
+						else row += '<td></td>';
+					}
+					row += '</tr>';
+					$(target).append(row);
+				}
+
+				target = '#solMat tbody';
+
+				for(let i = 0; i < size; i++){
+					var row = '<tr><td>' + letters[i] + '</td>';
+					for(let j = 0; j < size; j++){
+						if(mst[i][j] == 0) row += '<td>0</td>';
+						else if(mst[i][j] != INF) row += '<td>'+ mst[i][j] +'</td>';
+						else row += '<td></td>';
+					}
+					row += '</tr>';
+					$(target).append(row);
+				}
+
+				$('#weightHolder h4').append(mstWeight);
+			}
+
+			function completeUndirected(){
+				mat[1][0] = 6;
+				mat[3][0] = 10;
+				mat[6][0] = 8;
+				mat[2][1] = 11;
+				mat[4][1] = 15;
+				mat[7][1] = 13;
+				mat[7][2] = 4;
+				mat[4][3] = 6;
+				mat[5][4] = 2;
+				mat[6][5] = 4;
+				mat[8][5] = 6;
+				mat[7][6] = 5;
+				mat[8][6] = 5;
+				mat[8][7] = 7;
+			}
+
+			function find(x){
+				if(prev[x] == x) return x;
+				return find(prev[x]);
+			}
+
+			function unite(x, y){
+				var fx = find(x);
+				var fy = find(y);
+				prev[fx] = fy;
+			}
+
+			function kruskal(){
+				var mstEdges = 0;
+				var mstIndex = 0;
+
+				for(let i = 0; i < nEdges - 1; i++){
+					for(let j = 0; j < nEdges - i - 1; j++) {
+						if(edges[j][2] > edges[j + 1][2]) switchEdges(j, j + 1);
+					}
+				}
+
+				while(mstEdges < size - 1 || mstIndex < nEdges){
+					var s = edges[mstIndex][0];
+					var e = edges[mstIndex][1];
+					var w = edges[mstIndex++][2];
+
+					if(find(s) != find(e)){
+						unite(s, e);
+						mstWeight += w;
+						mst[s][e] = w;
+						mst[e][s] = w;
+						mstEdges++;
+					}
+				}
+
+				completeUndirected();
+				printMatrix();
+			}
+			
+			$(document).ready(function(){
+				initializeAdy();
+				kruskal();
+			});
+		</script>
+	</body>
+</html>
