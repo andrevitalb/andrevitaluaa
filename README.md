@@ -5,7 +5,7 @@
 # 3° Semestre
 ## Estructuras Computacionales Avanzadas
 - **[Árbol Binario](https://andrevitalb.github.io/uaa_repo/3_Semestre/Estructuras/arbol_binario/)**  
-    Programa que crea un árbol binario y realiza los recorridos preorden, inorder y postorden.  
+    Programa que crea un árbol binario y realiza los recorridos preorden, inorden y postorden.  
     
 - **[Algoritmo de Warshall](https://andrevitalb.github.io/uaa_repo/3_Semestre/Estructuras/algoritmo_warshall/)**  
     Programa que calcule las componentes conexas de un grafo dado mediante el algoritmo de Warshall.  
@@ -15,7 +15,12 @@
     
 - **[Algoritmo de Kruskal](https://andrevitalb.github.io/uaa_repo/3_Semestre/Estructuras/algoritmo_kruskal/)**  
     Programa que genere un árbol de expansión mínima de un grafo dado por medio del algoritmo de Kruskal.  
-      
+
+# 4° Semestre
+## Lenguajes de Computación IV
+- **[Proyecto Carrito de Compras](https://andrevitalb.github.io/uaa_repo/4_Semestre/Lenguajes/shopping_cart/)**  
+    Plataforma de carrito de compras. Implementa control de productos y control de carrito actual.  
+   
 
 <p align="center">
     <a href = "https://andrevital.com" target = "_blank"><img src="https://www.andrevital.com/images/logo_contained_negative.svg" width="40px"></a>
