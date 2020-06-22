@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+* {
+    /* color: #fff; */
+    font-family: Source Sans Pro, sans-serif;
+}
+
+.mt-10 {
+    margin-top: 6rem !important;
+}
+
+
+body {
+    /* background-color: #212121 !important; */
+}
+
+#productTable input,
+#shoppingTable input { text-align: center; }
+
+#productTable tbody tr td:nth-child(5) { text-align: center; }
+
+#productTable tbody tr td:nth-child(4),
+#shoppingTable tbody tr td:nth-child(4),
+#shoppingTable tbody tr td:nth-child(5) { 
+    width: 35px; 
+    text-align: center;
+}
+
+.modal-body.edit #productDetailsFields.active { display: flex; }
+
+.modal-body.edit #productDetailsFields:not(.active),
+.modal-body:not(.edit) #productSelect,
+.modal-body #productSelect:not(.active) { display: none; }
+
+.modal-footer #addProduct:not(.active),
+.modal-footer #editProduct:not(.active) { display: none !important; }

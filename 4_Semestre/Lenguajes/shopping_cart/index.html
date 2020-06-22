@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Store</title>
+
+        <link rel="icon" href="assets/img/favicon.ico">
+
+        <link rel="stylesheet" href="assets/css/styles.css">
+        <link rel="stylesheet" href="assets/css/all.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar fixed-top navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/img/logo_contained_negative.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                    Tienda
+                </a>
+                <div data-toggle="tooltip" data-placement="bottom" title="Ver mi carrito">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#shoppingCart">
+                        <i class="fal fa-shopping-cart"></i>
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <div class="container mt-10">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-9">
+                    <table class="table table-striped table-dark table-hover" id="productTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th class = "text-center"><i class="fal fa-edit"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="col-12 col-md-2">
+                    <button type="button" class="btn btn-info d-block mb-2 w-100" data-toggle="modal" data-target="#productModal" data-option="addProduct">Agregar producto</button>
+                    <button type="button" class="btn btn-info d-block mb-2 w-100" data-toggle="modal" data-target="#productModal" data-option="editProduct">Editar producto</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products CRUD -->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Crear Producto</h5>
+                        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-10">
+                                <form class="text-right">
+                                    <div class="row">
+                                        <div class="col-12 mb-2">
+                                            <select class="form-control" id="productSelect">
+                                                <option disabled selected value="disabled"> - Selecciona uno</option>
+                                            </select>
+                                        </div>
+                                        <div class="row" id="productDetailsFields">
+                                            <div class="col-8 mb-1">
+                                                <input type="text" name="addName" id="addName" class="form-control" placeholder="Nombre">
+                                            </div>
+                                            <div class="col-4 mb-1">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">$</span>
+                                                    </div>
+                                                    <input type="text" name="addPrice" id="addPrice" class="form-control" placeholder="Precio">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text">.00</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <textarea type="text" name="addDescription" id="addDescription" class="form-control" placeholder="Descripción" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger close-modal" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary" id="addProduct">Agregar producto</button>
+                        <button type="button" class="btn btn-primary" id="editProduct">Actualizar producto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Shopping cart CRUD -->
+        <div class="modal fade" id="shoppingCart" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Carrito de compras</h5>
+                        <button type="button" class="close close-modal" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row justify-content-center">
+                            <div class="col-10">
+                                <table class="table table-striped table-dark table-hover" id="shoppingTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                            <th>Precio</th>
+                                            <th>Cantidad</th>
+                                            <th class = "text-center"><i class="fal fa-trash-alt"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger close-modal" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" id="buyItems">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

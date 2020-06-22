@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1000 1000" style="enable-background:new 0 0 1000 1000;" xml:space="preserve">
+<style type="text/css">
+	.st0{display:none;fill:#212121;}
+	.st1{fill:#212121;}
+	.st2{fill:#787878;}
+	.st3{fill:#FFFFFF;}
+	.st4{clip-path:url(#SVGID_2_);fill:#787878;}
+	.st5{clip-path:url(#SVGID_4_);fill:#787878;}
+	.st6{display:none;}
+	.st7{clip-path:url(#SVGID_6_);}
+	.st8{clip-path:url(#SVGID_8_);}
+</style>
+<g id="Extra_Assets">
+</g>
+<g id="Negative">
+	<rect class="st0" width="1000" height="1000"/>
+	<g>
+		<path class="st1" d="M701.35,1000h-402.7C134.39,1000,0,865.61,0,701.35v-402.7C0,134.39,134.39,0,298.65,0h402.7
+			C865.61,0,1000,134.39,1000,298.65v402.7C1000,865.61,865.61,1000,701.35,1000z"/>
+	</g>
+	<g>
+		<polygon id="letv" class="st2" points="849.94,250 767.59,250 561.71,638.2 479.35,482.92 397,482.92 521.35,715.84 561.94,793 
+			602.88,715.84 		"/>
+		<polygon class="st2" points="150,750 232.35,750 438.24,361.8 520.59,517.08 602.94,517.08 478.59,284.16 438,207 397.06,284.16 
+					"/>
+		<polygon class="st3" points="100,700 150,638 900,300 850,363 		"/>
+		<g>
+			<defs>
+				<rect id="SVGID_1_" x="443.5" y="415.5" width="173" height="119"/>
+			</defs>
+			<clipPath id="SVGID_2_">
+				<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+			</clipPath>
+			<polygon class="st4" points="150,750 232.35,750 438.24,361.8 520.59,517.08 602.94,517.08 478.59,284.16 438,207 397.06,284.16 
+							"/>
+		</g>
+		<g>
+			<defs>
+				<rect id="SVGID_3_" x="403.5" y="475.5" width="108" height="110"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<polygon class="st5" points="849.94,250 767.59,250 561.71,638.2 479.35,482.92 397,482.92 521.35,715.84 561.94,793 
+				602.88,715.84 			"/>
+		</g>
+	</g>
+</g>
+<g id="Regular">
+</g>
+</svg>
