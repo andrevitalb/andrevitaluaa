@@ -1,6 +1,8 @@
 # Lenguajes de Computación IV
 - **[Proyecto Carrito de Compras](https://andrevitalb.github.io/uaa_repo/4_Semestre/Lenguajes/shopping_cart/)**  
-    Plataforma de carrito de compras. Implementa control de productos y control de carrito actual.    
+    Plataforma de carrito de compras. Implementa control de productos y control de carrito actual.
+
+    Proyecto desarrollado por Santiago André Vital Betanzos y Jaime Alfonso Rodríguez Sandoval.
       
 
 <p align="center">
