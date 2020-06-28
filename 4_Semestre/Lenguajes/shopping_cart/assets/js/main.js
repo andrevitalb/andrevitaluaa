@@ -171,7 +171,7 @@ $('#addProduct').click(function(){
         let productReg = 'product' + productCounter;
         localStorage.setItem(productReg, JSON.stringify(newProduct));
         
-        productCounter++;
+        if(productCounter++ == 0) $('#productTable tbody').html('');
         localStorage.setItem('existingCounter', productCounter);
 
         $('#productTable tbody').append(`
