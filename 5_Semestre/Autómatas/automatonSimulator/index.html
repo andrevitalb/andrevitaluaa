@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="author" content="André Vital">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Automaton Simulator</title>
+		<title>Simulador de autómatas</title>
 
 		<!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -76,10 +76,10 @@
 									</button>
 								</div>
 								<label>Aceptadas (una por línea):</label>
-								<textarea id="debug__accepted-strings" class="simulator__tools__textarea" rows="5"></textarea>
+								<textarea id="debug__accepted-strings" class="simulator__tools__textarea"></textarea>
 								<br />
 								<label>Rechazadas (una por línea):</label>
-								<textarea id="debug__rejected-strings" class="simulator__tools__textarea" rows="5"></textarea>
+								<textarea id="debug__rejected-strings" class="simulator__tools__textarea"></textarea>
 							</div>
 						</div>
 					</div>
@@ -107,10 +107,10 @@
 
 			resetBtn.addEventListener('click', () => fsm.reset());
 			addStateBtn.addEventListener('click', () => fsm.addState());
-			testBtn.addEventListener('click', () => fsm.test($('.simulator__tools__test-string').value));
+			testBtn.addEventListener('click', () => fsm.test($('.simulator__tools__test-string').val()));
 			stopBtn.addEventListener('click', () => fsm.debugStop());
-			debugBtn.addEventListener('click', () => fsm.debug($('.simulator__tools__test-string').value));
-			bulkTestBtn.addEventListener('click', () => fsm.test({accept:$('#debug__accepted-strings').value.split('\n'), reject:$('#debug__rejected-strings').value.split('\n')}));
+			debugBtn.addEventListener('click', () => fsm.debug($('.simulator__tools__test-string').val()));
+			bulkTestBtn.addEventListener('click', () => fsm.test({accept:$('#debug__accepted-strings').val().split('\n'), reject:$('#debug__rejected-strings').val().split('\n')}));
 		</script>
 	</body>
 </html>
