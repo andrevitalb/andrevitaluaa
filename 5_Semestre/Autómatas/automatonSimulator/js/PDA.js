@@ -256,7 +256,7 @@ PDA.prototype.updateStatus = function() {
 };
 
 PDA.runTests = function() {
-  function assert(outcome, description) {window.console && console.log((outcome ? 'Pass:' : 'FAIL:'),  description);}
+  function assert(outcome, description) {window.console && console.log((outcome ? 'pass:' : 'FAIL:'),  description);}
 
   var myPDA = new PDA(true)
     .addTransition('start', 'a', '', '', 's1')

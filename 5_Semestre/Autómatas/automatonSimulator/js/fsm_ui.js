@@ -20,7 +20,7 @@ var fsm = (function() {
 			$.each(keys, function(idx, key) {
 				$('<li></li>', {'class':'machineName'})
 					.append($('<span></span>').html(key))
-					.append('<div class="delete" style="display:none;" title="Delete"><img class="delete" src="images/empty.png" /></div>')
+					.append('<div class="delete" style="display:none;" title="Eliminar"><i class="delete fas fa-times"></i></div>')
 					.appendTo('#storedMachines');
 			});
 		}
@@ -160,7 +160,7 @@ var fsm = (function() {
 		// Create states
 		$.each(model.states, function(stateId, data) {
 			var state = null;
-			if (stateId !== 'start') {
+			if (stateId !== 'inicio') {
 				state = makeState(stateId)
 					.css('left', data.left + 'px')
 					.css('top', data.top + 'px')
@@ -168,7 +168,7 @@ var fsm = (function() {
 				jsPlumb.draggable(state, {containment:"parent"});
 				makeStatePlumbing(state);
 			} else {
-				state = $('#start');
+				state = $('#inicio');
 			}
 			if (data.isAccept) {state.find('input.isAccept').prop('checked', true);}
 		});
@@ -185,18 +185,17 @@ var fsm = (function() {
 	};
 
 	var updateStatusUI = function(status) {
-		$('#fsmDebugInputStatus span.consumedInput').html(status.input.substring(0, status.inputIndex));
+		$('.simulator__console__status .consumedInput').html(status.input.substring(0, status.inputIndex));
 		if (status.nextChar === '') {
-			$('#fsmDebugInputStatus span.currentInput').html(delegate.getEmptyLabel());
-			$('#fsmDebugInputStatus span.futureInput').html(status.input.substring(status.inputIndex));
+			$('.simulator__console__status .currentInput').html(delegate.getEmptyLabel());
+			$('.simulator__console__status .futureInput').html(status.input.substring(status.inputIndex));
 		} else if (status.nextChar === null) {
-			$('#fsmDebugInputStatus span.currentInput').html('[End of Input]');
-			$('#fsmDebugInputStatus span.futureInput').html('');
+			$('.simulator__console__status .currentInput').html('[End of Input]');
+			$('.simulator__console__status .futureInput').html('');
 		} else {
-			$('#fsmDebugInputStatus span.currentInput').html(status.input.substr(status.inputIndex, 1));
-			$('#fsmDebugInputStatus span.futureInput').html(status.input.substring(status.inputIndex+1));
+			$('.simulator__console__status .currentInput').html(status.input.substr(status.inputIndex, 1));
+			$('.simulator__console__status .futureInput').html(status.input.substring(status.inputIndex+1));
 		}
-
 	};
 
 	var connectionClicked = function(connection) {
@@ -211,16 +210,15 @@ var fsm = (function() {
 	};
 
 	var domReadyInit = function() {
-		self.setGraphContainer($('#machineGraph'));
+		self.setGraphContainer($('.simulator__graph-container'));
 
 		$(window).resize(function() {
-			container.height($(window).height() - $('#mainHolder h1').outerHeight() - $('#footer').outerHeight() - $('#bulkResultHeader').outerHeight() - $('#resultConsole').outerHeight() - 30 + 'px');
 			jsPlumb.repaintEverything();
 		});
 		$(window).resize();
 
 		// Setup handling 'enter' in test string box
-		$('#testString').keyup(function(event) {if (event.which === $.ui.keyCode.ENTER) {$('#testBtn').trigger('click');}});
+		$('.simulator__tools__test-string').keyup(function(event) {if (event.which === $.ui.keyCode.ENTER) {$('#testBtn').trigger('click');}});
 
 		container.dblclick(function(event) {
 			self.addState({top: event.offsetY, left: event.offsetX});
@@ -231,21 +229,11 @@ var fsm = (function() {
 		initFSMSelectors();
 		makeSaveLoadDialog();
 
-		var exampleBox = $('#examples').on('change', function() {
-			if ($(this).val() !== '') {
-				loadSerializedFSM(fsm_examples[$(this).val()]);
-				$(this).val('');
-			}
-		});
-		$.each(fsm_examples, function(key, serializedFSM) {
-			$('<option></option>', {value:key}).html(key).appendTo(exampleBox);
-		});
-
 		checkHashForModel();
 	};
 
 	var makeStartState = function() {
-		var startState = makeState('start');
+		var startState = makeState('inicio');
 		startState.find('div.delete').remove(); // Can't delete start state
 		container.append(startState);
 		makeStatePlumbing(startState);
@@ -256,7 +244,7 @@ var fsm = (function() {
 			.append('<input id="' + stateId+'_isAccept' + '" type="checkbox" class="isAccept" value="true" title="Accept State" />')
 			.append(stateId)
 			.append('<div class="plumbSource" title="Drag from here to create new transition">&nbsp;</div>')
-			.append('<div class="delete" style="display:none;" title="Delete"><img class="delete" src="images/empty.png" /></div>');
+			.append('<div class="delete" style="display:none;" title="Delete"><i class="delete fas fa-times"></div>');
 	};
 
 	var makeStatePlumbing = function(state) {
@@ -285,7 +273,7 @@ var fsm = (function() {
 		setDelegate: function(newDelegate) {
 			delegate = newDelegate;
 			delegate.setContainer(container);
-			delegate.reset().fsm().setStartState('start');
+			delegate.reset().fsm().setStartState('inicio');
 			jsPlumb.unbind("jsPlumbConnection");
 			jsPlumb.reset();
 			container.empty();
@@ -303,8 +291,8 @@ var fsm = (function() {
 		},
 
 		addState: function(location) {
-			while ($('#s'+stateCounter).length > 0) {++stateCounter;} // Prevent duplicate states after loading
-			var state = makeState('s' + stateCounter);
+			while ($('#q'+stateCounter).length > 0) {++stateCounter;} // Prevent duplicate states after loading
+			var state = makeState('q' + stateCounter);
 			if (location && location.left && location.top) {
 				state.css('left', location.left + 'px')
 				.css('top', location.top + 'px');
@@ -332,22 +320,22 @@ var fsm = (function() {
 
 		test: function(input) {
 			if ($.type(input) === 'string') {
-				$('#testResult').html('Testing...')
+				$('.simulator__tools__debug-result').html('Testing.simulator__tools__debug-result.')
 				var accepts = delegate.fsm().accepts(input);
-				$('#testResult').html(accepts ? 'Accepted' : 'Rejected').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 1000);
+				$('.simulator__tools__debug-result').html(accepts ? 'Aceptada' : 'Rechazada').effect('highlight', {color: accepts ? '#bfb' : '#fbb'}, 1000);
 			} else {
-				$('#resultConsole').empty();
+				$('.simulator__console').empty();
 				var makePendingEntry = function(input, type) {
-						return $('<div></div>', {'class':'pending', title:'Pending'}).append(type + ': ' + (input === '' ? '[Empty String]' : input)).appendTo('#resultConsole');
+						return $('<div></div>', {'class':'pending', title:'Pending'}).append(type + ': ' + (input === '' ? '[Empty String]' : input)).appendTo('.simulator__console');
 				};
 				var updateEntry = function(result, entry) {
 					entry.removeClass('pending').addClass(result).attr('title', result).append(' -- ' + result);
 				};
 				$.each(input.accept, function(index, string) {
-					updateEntry((delegate.fsm().accepts(string) ? 'Pass' : 'Fail'), makePendingEntry(string, 'Accept'));
+					updateEntry((delegate.fsm().accepts(string) ? 'pass' : 'fail'), makePendingEntry(string, 'Accept'));
 				});
 				$.each(input.reject, function(index, string) {
-					updateEntry((delegate.fsm().accepts(string) ? 'Fail' : 'Pass'), makePendingEntry(string, 'Reject'));
+					updateEntry((delegate.fsm().accepts(string) ? 'fail' : 'pass'), makePendingEntry(string, 'Reject'));
 				});
 				$('#bulkResultHeader').effect('highlight', {color: '#add'}, 1000);
 			}
@@ -356,11 +344,11 @@ var fsm = (function() {
 
 		debug: function(input) {
 			if ($('#stopBtn').prop('disabled')) {
-				$('#testResult').html('&nbsp;');
+				$('.simulator__tools__debug-result').html('&nbsp;');
 				$('#stopBtn').prop('disabled', false);
-				$('#loadBtn, #testBtn, #bulkTestBtn, #testString, #resetBtn').prop('disabled', true);
+				$('#loadBtn, #testBtn, #bulkTestBtn, .simulator__tools__test-string, #resetBtn').prop('disabled', true);
 				$('button.delegate').prop('disabled', true);
-				$('#fsmDebugInputStatus').show();
+				$('.simulator__console__status').show();
 				delegate.debugStart();
 				delegate.fsm().stepInit(input);
 			} else {
@@ -370,16 +358,16 @@ var fsm = (function() {
 			updateStatusUI(status);
 			delegate.updateUI();
 			if (status.status !== 'Active') {
-				$('#testResult').html(status.status === 'Accept' ? 'Accepted' : 'Rejected').effect('highlight', {color: status.status === 'Accept' ? '#bfb' : '#fbb'}, 1000);
+				$('.simulator__tools__debug-result').html(status.status === 'Accept' ? 'Aceptada' : 'Rechazada').effect('highlight', {color: status.status === 'Accept' ? '#bfb' : '#fbb'}, 1000);
 				$('#debugBtn').prop('disabled', true);
 			}
 			return self;
 		},
 
 		debugStop: function() {
-			$('#fsmDebugInputStatus').hide();
+			$('.simulator__console__status').hide();
 			$('#stopBtn').prop('disabled', true);
-			$('#loadBtn, #testBtn, #bulkTestBtn, #debugBtn, #testString, #resetBtn').prop('disabled', false);
+			$('#loadBtn, #testBtn, #bulkTestBtn, #debugBtn, .simulator__tools__test-string, #resetBtn').prop('disabled', false);
 			$('button.delegate').prop('disabled', false).each(function() {
 				switch ($(this).html()) {
 					case 'DFA': if (delegate === dfa_delegate) {$(this).prop('disabled', true);} break;
@@ -393,11 +381,11 @@ var fsm = (function() {
 
 		reset: function() {
 			self.setDelegate(delegate);
-			$('#testString').val('');
-			$('#testResult').html('&nbsp;');
+			$('.simulator__tools__test-string').val('');
+			$('.simulator__tools__debug-result').html('&nbsp;');
 			$('#acceptStrings').val('');
 			$('#rejectStrings').val('');
-			$('#resultConsole').empty();
+			$('.simulator__console').empty();
 			return self;
 		},
 
@@ -409,7 +397,7 @@ var fsm = (function() {
 					if (localStorageAvailable()) {
 						serializedModel = localStorage.getItem(storageKey);
 						if (!serializedModel) {
-							alert('Failed to Retrieve Machine with Name "'+storageKey+'"');
+							alert('failed to Retrieve Machine with Name "'+storageKey+'"');
 							return false;
 						}
 					} else {
@@ -440,7 +428,7 @@ var fsm = (function() {
 		save: function() {
 			var model = delegate.serialize();
 			container.find('div.state').each(function() {
-				if ($(this).attr('id') !== 'start') {$.extend(model.states[$(this).attr('id')], $(this).position());}
+				if ($(this).attr('id') !== 'inicio') {$.extend(model.states[$(this).attr('id')], $(this).position());}
 			});
 			model.bulkTests = {
 				accept: $('#acceptStrings').val(),

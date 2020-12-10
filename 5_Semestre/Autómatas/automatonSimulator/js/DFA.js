@@ -116,7 +116,7 @@ DFA.prototype.step = function() {
 };
 
 DFA.runTests = function() {
-  function assert(outcome, description) {window.console && console.log((outcome ? 'Pass:' : 'FAIL:'),  description);}
+  function assert(outcome, description) {window.console && console.log((outcome ? 'pass:' : 'FAIL:'),  description);}
 
   var myDFA = new DFA(true)
     .addTransition('start', 'a', 's1')

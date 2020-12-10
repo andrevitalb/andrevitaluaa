@@ -62,7 +62,7 @@ var dfa_delegate = (function() {
     dialogDiv = $('<div></div>', {style:'text-align:center;'});
     $('<div></div>', {style:'font-size:small;'}).html('Empty transitions not allowed for DFAs<br />Read from Input').appendTo(dialogDiv);
     $('<span></span>', {id:'dfa_dialog_stateA', 'class':'tranStart'}).appendTo(dialogDiv);
-    $('<input />', {id:'dfa_dialog_readCharTxt', type:'text', maxlength:1, style:'width:30px;text-align:center;'})
+    $('<input />', {id:'dfa_dialog_readCharTxt', type:'text', maxlength:1, style:'width:50px;text-align:center;'})
       .val('A')
       .keypress(function(event) {
         if (event.which === $.ui.keyCode.ENTER) {dialogDiv.parent().find('div.ui-dialog-buttonset button').eq(-1).click();}
