@@ -1,0 +1,13 @@
+{
+    "version": 3,
+    "mappings": "AAKA,AAAA,IAAI,CAAC;EACD,gBAAgB,EAAE,OAAO;EACzB,KAAK,EAAE,IAAI;CACd",
+    "sources": [
+        "main.scss",
+        "abstracts/_variables.scss",
+        "abstracts/_mixins.scss",
+        "abstracts/_misc.scss",
+        "pages/_index.scss"
+    ],
+    "names": [],
+    "file": "main.css"
+}
