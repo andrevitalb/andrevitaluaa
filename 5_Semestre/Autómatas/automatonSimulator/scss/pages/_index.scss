@@ -1,0 +1,198 @@
+.simulator {
+    padding: 1rem;
+    
+    &__header {
+        padding: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+
+        &__button {
+            margin: 0 5px;
+        }
+    }
+
+    &__title {
+        font-size: 2rem;
+        margin-right: 1rem;
+        margin-bottom: 0;
+    }
+
+    &__graph-container {
+        border: 1px solid #aaa;
+        position: relative;
+        overflow: auto;
+        height: 65vh;
+
+        .state {
+            position: absolute;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #3370a1;
+            padding-left: 5px;
+            cursor: move;
+            border-radius: 15px;
+            text-align: center;
+
+            &#inicio {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                cursor: default;
+            }
+
+            &.current {
+                background-color: #8c8;
+            }
+
+            .plumbSource {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                right: 5px;
+                top: 5px;
+                background-color: #a8193d;
+                cursor: pointer;
+                border-radius: 6px;
+            }
+
+            input[type="checkbox"].isAccept {
+                position: absolute;
+                top: 7.5px;
+                left: 7.55px;
+            }
+
+            .delete {
+                position: absolute;
+                top: -8px;
+                left: 21px;
+                width: 20px;
+                height: 20px;
+                font-size: 1.2rem;
+                line-height: 20px;
+                text-align: center;
+                color: #ccc;
+                z-index: 100;
+                cursor: pointer;
+            }
+        }
+
+        .fsmStatus {
+            position: absolute;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            padding: 2px;
+            padding-left: 2px;
+            padding-right: 2px;
+            font-size: 9pt;
+            letter-spacing: 2px;
+        }
+    }
+
+    &__console {
+        height: 15vh;
+        border: 1px solid #aaa;
+        overflow: auto;
+
+        &__title {
+            margin: 5px 0;
+        }
+
+        &__status {
+            display: inline-block;
+            margin-left: 250px;
+
+            .consumedInput {
+                text-decoration: line-through;
+            }
+
+            .currentInput {
+                font-weight: bold;
+                margin-left: 4px;
+                margin-right: 4px;
+            }
+
+            .futureInput {
+                font-style: italic;
+            }
+        }
+
+        div {
+            padding-left: 5px;
+        }
+
+        .pending {
+            background-color: #9494eb;
+        }
+
+        .pass {
+            background-color: #51c451;
+        }
+
+        .fail {
+            background-color: #da5d5d;
+        }
+    }
+
+    &__tools {
+        padding: 5vh 15px;
+
+        &__block {
+            background-color: $ultra-light-gray;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1.5px solid #ccc;
+        }
+
+        &__header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        &__title {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        &__test-string {
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        &__button {
+            flex-grow: 1;
+            margin: 0 5px;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                background-color: $gray;
+            }
+
+            &-container {
+                display: flex;
+                padding: 1rem 0;
+            }
+        }
+
+        &__textarea {
+            width: 100%;
+        }
+    }
+
+    .stackBody {
+        border-left: 1px solid #aaa;
+        border-top: 1px solid #aaa;
+        border-bottom: 1px solid #aaa;
+    }
+}

@@ -1,7 +1,7 @@
 .button {
     background-color: $light-gray;
     border: none;
-    outline: none;
+    outline: none !important;
     color: #fff;
     border-radius: 7.5px;
     padding: .5rem;
@@ -9,27 +9,43 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.5rem;
 
     i {
         font-size: 1.2rem;
+        line-height: 1.5rem;
     }
 
-    &--disabled {
+    &[disabled="disabled"] {
         position: relative;
         cursor: default;
 
         &::after {
             content: '';
             position: absolute;
+            border-radius: 7.5px;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0,0,0,0.5);
         }
+
+        &:hover {
+            background-color: $light-gray !important;
+        }
     }
 
-    &:not(.button--disabled):hover {
+    &:hover {
         background-color: $ultra-light-gray;
+    }
+
+    &--green {
+        background-color: #45c75a;
+
+        &:hover {
+            background-color: #339e45;
+        }
     }
 }

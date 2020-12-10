@@ -1,9 +1,33 @@
 @import './abstracts/variables';
 @import './abstracts/mixins';
 @import './abstracts/misc';
+@import './components/button';
 @import './pages/index';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     background-color: #212121;
     color: #fff;
+    font-family: $main-font;
+}
+
+a, button {
+    transition: all .3s ease-in-out;
+}
+
+input, textarea {
+    border-radius: 5px;
+    border: none;
+    outline: none !important;
+    padding: .5rem;
+    font-size: 1.2rem;
+
+    &:focus, &:active {
+        border: 2px solid $gray;
+    }
 }

@@ -1,5 +1,270 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
+.button {
+  background-color: #777;
+  border: none;
+  outline: none !important;
+  color: #fff;
+  border-radius: 7.5px;
+  padding: .5rem;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.button i {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.button[disabled="disabled"] {
+  position: relative;
+  cursor: default;
+}
+
+.button[disabled="disabled"]::after {
+  content: '';
+  position: absolute;
+  border-radius: 7.5px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.button[disabled="disabled"]:hover {
+  background-color: #777 !important;
+}
+
+.button:hover {
+  background-color: #aaa;
+}
+
+.button--green {
+  background-color: #45c75a;
+}
+
+.button--green:hover {
+  background-color: #339e45;
+}
+
+.simulator {
+  padding: 1rem;
+}
+
+.simulator__header {
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.simulator__header__button {
+  margin: 0 5px;
+}
+
+.simulator__title {
+  font-size: 2rem;
+  margin-right: 1rem;
+  margin-bottom: 0;
+}
+
+.simulator__graph-container {
+  border: 1px solid #aaa;
+  position: relative;
+  overflow: auto;
+  height: 65vh;
+}
+
+.simulator__graph-container .state {
+  position: absolute;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  background-color: #3370a1;
+  padding-left: 5px;
+  cursor: move;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.simulator__graph-container .state.current {
+  background-color: #8c8;
+}
+
+.simulator__graph-container .state .plumbSource {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 5px;
+  top: 5px;
+  background-color: #a8193d;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.simulator__graph-container .state input[type="checkbox"].isAccept {
+  position: absolute;
+  top: 7.5px;
+  left: 7.55px;
+}
+
+.simulator__graph-container .state .delete {
+  position: absolute;
+  top: -8px;
+  left: 21px;
+  width: 20px;
+  height: 20px;
+  font-size: 1.2rem;
+  line-height: 20px;
+  text-align: center;
+  color: #ccc;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.simulator__console {
+  height: 15vh;
+  border: 1px solid #aaa;
+  overflow: auto;
+}
+
+.simulator__console__title {
+  margin: 5px 0;
+}
+
+.simulator__console__status {
+  display: inline-block;
+  margin-left: 250px;
+}
+
+.simulator__console__status .consumedInput {
+  text-decoration: line-through;
+}
+
+.simulator__console__status .currentInput {
+  font-weight: bold;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.simulator__console__status .futureInput {
+  font-style: italic;
+}
+
+.simulator__tools {
+  padding: 5vh 15px;
+}
+
+.simulator__tools__block {
+  background-color: #aaa;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1.5px solid #ccc;
+}
+
+.simulator__tools__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 1rem;
+}
+
+.simulator__tools__title {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.simulator__tools__test-string {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.simulator__tools__button {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  margin: 0 5px;
+}
+
+.simulator__tools__button:first-child {
+  margin-left: 0;
+}
+
+.simulator__tools__button:last-child {
+  margin-right: 0;
+}
+
+.simulator__tools__button:hover {
+  background-color: #212121;
+}
+
+.simulator__tools__button-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1rem 0;
+}
+
+.simulator__tools__textarea {
+  width: 100%;
+}
+
+.simulator #inicio {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  cursor: default;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
 body {
   background-color: #212121;
   color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+a, button {
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+input, textarea {
+  border-radius: 5px;
+  border: none;
+  outline: none !important;
+  padding: .5rem;
+  font-size: 1.2rem;
+}
+
+input:focus, input:active, textarea:focus, textarea:active {
+  border: 2px solid #212121;
 }
 /*# sourceMappingURL=main.css.map */
