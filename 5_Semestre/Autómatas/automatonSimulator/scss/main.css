@@ -105,6 +105,13 @@
   text-align: center;
 }
 
+.simulator__graph-container .state#inicio {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  cursor: default;
+}
+
 .simulator__graph-container .state.current {
   background-color: #8c8;
 }
@@ -140,6 +147,17 @@
   cursor: pointer;
 }
 
+.simulator__graph-container .fsmStatus {
+  position: absolute;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 2px;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-size: 9pt;
+  letter-spacing: 2px;
+}
+
 .simulator__console {
   height: 15vh;
   border: 1px solid #aaa;
@@ -148,6 +166,7 @@
 
 .simulator__console__title {
   margin: 5px 0;
+  display: inline-block;
 }
 
 .simulator__console__status {
@@ -167,6 +186,22 @@
 
 .simulator__console__status .futureInput {
   font-style: italic;
+}
+
+.simulator__console div {
+  padding-left: 5px;
+}
+
+.simulator__console .pending {
+  background-color: #9494eb;
+}
+
+.simulator__console .pass {
+  background-color: #51c451;
+}
+
+.simulator__console .fail {
+  background-color: #da5d5d;
 }
 
 .simulator__tools {
@@ -231,11 +266,10 @@
   width: 100%;
 }
 
-.simulator #inicio {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  cursor: default;
+.simulator .stackBody {
+  border-left: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
 }
 
 * {
