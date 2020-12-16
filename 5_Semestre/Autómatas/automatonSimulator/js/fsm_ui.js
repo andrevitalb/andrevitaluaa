@@ -122,7 +122,6 @@ var fsm = (function() {
 			var newDelegate = null;
 			switch ($(this).html()) {
 				case 'DFA': newDelegate = dfa_delegate; break;
-				case 'NFA': newDelegate = nfa_delegate; break;
 				case 'PDA': newDelegate = pda_delegate; break;
 			}
 			if (newDelegate !== delegate) {
@@ -371,7 +370,6 @@ var fsm = (function() {
 			$('button.delegate').prop('disabled', false).each(function() {
 				switch ($(this).html()) {
 					case 'DFA': if (delegate === dfa_delegate) {$(this).prop('disabled', true);} break;
-					case 'NFA': if (delegate === nfa_delegate) {$(this).prop('disabled', true);} break;
 					case 'PDA': if (delegate === pda_delegate) {$(this).prop('disabled', true);} break;
 				}
 			});
